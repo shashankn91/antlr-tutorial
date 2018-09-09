@@ -1,0 +1,6 @@
+*.swo
+*.swp
+*.iml
+/target
+.idea/
+gen/
