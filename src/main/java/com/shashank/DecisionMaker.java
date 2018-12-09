@@ -1,15 +1,29 @@
 package com.shashank;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DecisionMaker {
 
+    public List<String>  getVars(String code){
+        CharStream charStream = new ANTLRInputStream(code);
+        DecisionLexer lexer = new DecisionLexer(charStream);
+        TokenStream tokens = new CommonTokenStream(lexer);
+        ((CommonTokenStream) tokens).fill();
+        List<Token> tokensList  = ((CommonTokenStream) tokens).get(0,tokens.size() -1);
+
+        List<String> varsList = tokensList.stream().filter(t->{
+            if(lexer.getVocabulary().getSymbolicName(t.getType()) == null){
+                return false;
+            }
+            return lexer.getVocabulary().getSymbolicName(t.getType()).equals("VARNAME");
+        }).map(t-> t.getText().trim().substring(1)).collect(Collectors.toList());
+
+        return varsList;
+    }
     public boolean parse(String code, Map<String, VariableData> context) {
         CharStream charStream = new ANTLRInputStream(code);
         DecisionLexer lexer = new DecisionLexer(charStream);

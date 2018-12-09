@@ -24,6 +24,7 @@ public class App {
 
         String condition = "($ans % [#sha,#ra,#lol, #gg])";
 
+        System.out.println(decisionMaker.getVars(condition));
         System.out.println("Conditional evaluates to " + decisionMaker.parse(condition , context));
 
 
