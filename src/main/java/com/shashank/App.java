@@ -15,14 +15,12 @@ public class App {
 
         List<String> strings = new ArrayList<>();
         strings.add("sha1");
-        strings.add("ra1");
-        strings.add("lol1");
 
         VariableData variableData = new VariableData(VariableData.VariableType.LIST_STRING,null,strings,null,null);
 
-        context.put("ans",variableData);
+        context.put("ans-_a_1",variableData);
 
-        String condition = "($ans % [#sha,#ra,#lol, #gg])";
+        String condition = "(($ans % [#sha,#ra,#lol, #gg]) || ($ans-_a_1 % [#sha,#ra,#lol, #gg])) ";
 
         System.out.println(decisionMaker.getVars(condition));
         System.out.println("Conditional evaluates to " + decisionMaker.parse(condition , context));

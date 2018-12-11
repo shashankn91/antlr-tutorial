@@ -108,6 +108,11 @@ public class DecisionMaker {
             varName = varName.startsWith("$") ? varName.substring(1) : varName;
 
             VariableData variableData = externalContext.get(varName);
+            if(variableData == null)
+            {
+                return null;
+            }
+
             if(variableData.getVariableType() != VariableData.VariableType.DOUBLE){
                 throw new RuntimeException("Wrong Variable Type");
             }
@@ -141,6 +146,11 @@ public class DecisionMaker {
             varName = varName.startsWith("$") ? varName.substring(1) : varName;
 
             VariableData variableData = externalContext.get(varName);
+            if(variableData == null)
+            {
+                return null;
+            }
+
             if(variableData.getVariableType() != VariableData.VariableType.DOUBLE){
                 throw new RuntimeException("Wrong Variable Type");
             }
@@ -171,6 +181,10 @@ public class DecisionMaker {
             String varName = ctx.VARNAME().getSymbol().getText();
             varName = varName.startsWith("$") ? varName.substring(1) : varName;
             VariableData variableData = externalContext.get(varName);
+            if(variableData == null)
+            {
+                return null;
+            }
             if(variableData.getVariableType() != VariableData.VariableType.LIST_DOUBLE){
                 throw new RuntimeException("Wrong Variable Type");
             }
@@ -195,6 +209,11 @@ public class DecisionMaker {
             String varName = ctx.VARNAME().getSymbol().getText();
             varName = varName.startsWith("$") ? varName.substring(1) : varName;
             VariableData variableData = externalContext.get(varName);
+            if(variableData == null)
+            {
+                return null;
+            }
+
             if(variableData.getVariableType() != VariableData.VariableType.LIST_STRING){
                 throw new RuntimeException("Wrong Variable Type");
             }
@@ -219,6 +238,11 @@ public class DecisionMaker {
             String varName = ctx.VARNAME().getSymbol().getText();
             varName = varName.startsWith("$") ? varName.substring(1) : varName;
             VariableData variableData = externalContext.get(varName);
+
+            if(variableData == null){
+                return false;
+            }
+
             if(variableData.getVariableType() != VariableData.VariableType.LIST_STRING){
                 throw new RuntimeException("Wrong Variable Type");
             }

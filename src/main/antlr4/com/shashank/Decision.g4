@@ -36,6 +36,7 @@ strings             : COMMA STRING strings*                                     
 
 fragment LETTER     : [a-zA-Z] ;
 fragment DIGIT      : [0-9] ;
+fragment VAR_LETTER : [-a-zA-Z0-9_] ;
 
 COMMA               : ',' ;
 TO                  : '-' ;
@@ -46,10 +47,11 @@ WILDCARD            : '*' ;
 DOLLAR              : '$' ;
 EXACTMATCH          : '==';
 HASH                : '#' ;
+UNDERSCORE          : '_' ;
 
 NAME				: LETTER+ ;
 STRING              : HASH LETTER+ ;
-VARNAME             : DOLLAR LETTER+ ;
+VARNAME             : DOLLAR VAR_LETTER+ ;
 NUMBER              : DIGIT+ ('.' DIGIT+)? ;
 WS                  : [ \t\n\r]+ -> skip ;
 //WHITESPACE          : ' ' -> channel(HIDDEN);
